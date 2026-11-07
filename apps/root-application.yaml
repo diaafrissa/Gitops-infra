@@ -8,13 +8,16 @@ metadata:
 spec:
   project: default
   source:
-    repoURL:
+    repoURL: https://gitlab.com/diaa.frissan.1-group/Gitops-infra.git
     targetRevision: HEAD
     path: 'apps/manifests'  
   destination:
     server: 'https://kubernetes.default.svc' 
     namespace: argocd
   syncPolicy:
+    syncOptiona:
+      - CreateNamespace=true
+
     automated:
       prune: true
       selfHeal: true 

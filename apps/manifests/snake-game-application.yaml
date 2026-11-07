@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: snake-app-application
+  namespace: argocd
+  finalizers:
+    - resources-finalizers.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://gitlab.com/diaa.frissan.1-group/snake-game.git
+    targetRevision: HEAD
+    path: 'k8s'  
+  destination:
+    server: 'https://kubernetes.default.svc' 
+    namespace: default
+  syncPolicy:
+    syncOptiona:
+      - CreateNamespace=true
+      
+    automated:
+      prune: true
+      selfHeal: true 
